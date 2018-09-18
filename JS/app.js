@@ -84,6 +84,7 @@ let modal =
   mody.innerHTML = modal
 // click listeners for the next, prev and close btns.  Stops user from continuing if index is at either end of the index.
   document.getElementById('modal-next').addEventListener('click', (e) => {
+    // had to use == instead of ===, === would allow attempts to go back or forward if you started at 0 or 11.
     if (index == 11) { return }
     let indexAdd = parseInt(index) + 1;
     e.target.closest('.modal-container').remove()
