@@ -73,7 +73,6 @@ let modal =
               <p class="modal-text">Birthday: ${reverseDate}</p>
           </div>
       </div>
-
       <div class="modal-btn-container">
           <button type="button" id="modal-prev" class="modal-prev btn">Prev</button>
           <button type="button" id="modal-next" class="modal-next btn">Next</button>
