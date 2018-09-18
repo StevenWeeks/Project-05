@@ -1,6 +1,6 @@
 // Grab the gallery to append to it
 let gallery = document.getElementById('gallery')
-//create a variable to later put each profile into
+// create a variable to later put each profile into
 let cardContent = ''
 
 // fetching the data from randomuser api
