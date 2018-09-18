@@ -85,16 +85,18 @@ let modal =
   mody.innerHTML = modal
 // click listeners for the next, prev and close btns.  Stops user from continuing if index is at either end of the index.
   document.getElementById('modal-next').addEventListener('click', (e) => {
-    if (index === 11) { return }
+    if (index == 11) { return }
     let indexAdd = parseInt(index) + 1;
     e.target.closest('.modal-container').remove()
     modalMaker(indexAdd, peopleArr)
+
   })
   document.getElementById('modal-prev').addEventListener('click', (e) => {
-    if (index === 0) { return }
+    if (index == 0) { return }
     let indexAdd = parseInt(index) - 1;
     e.target.closest('.modal-container').remove()
     modalMaker(indexAdd, peopleArr)
+    
   })
   // closes the current modal and removes the background blur.
   document.getElementById('modal-close-btn').addEventListener('click', (e) => {
