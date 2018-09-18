@@ -96,7 +96,6 @@ let modal =
     let indexAdd = parseInt(index) - 1;
     e.target.closest('.modal-container').remove()
     modalMaker(indexAdd, peopleArr)
-    
   })
   // closes the current modal and removes the background blur.
   document.getElementById('modal-close-btn').addEventListener('click', (e) => {
