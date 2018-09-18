@@ -18,13 +18,15 @@ fetch('https://randomuser.me/api?results=12&nat=US')
         //
         let index = (e.target.closest('.card').id)
         let person = data.results
+        // pass in json info from api, and the id of the card clicked.
         modalMaker(index, person)
       }
     }, false)
   })
 
-// Create the profile
+// Create the profiles that will be displayed when page loads.
 function profileMaker (infos) {
+  // goes through each person object and displays the requested info on the cards, and gives each card an id number
   infos.forEach((person, index) => {
     cardContent += `<div class="card" id="${index}">
     <div class="card-img-container">
@@ -37,19 +39,25 @@ function profileMaker (infos) {
     </div>
     </div>`
   })
+  // once done filling each card, it then gets put on the gallery to display
   gallery.innerHTML = cardContent
-
 }
+// function that makes the modals; more detailed version of the cards.
+// passes index and an array people objects to make going through them easier.
 function modalMaker( index, peopleArr) {
+  // just some css fluff to make the background behind the current modal appear blurry
 document.querySelector('.gallery').classList.add('blur')
 document.querySelector('header').classList.add('blur')
+// person variable to make it easier to use template literals
 let person = peopleArr[index]
+// these two variables set up the birthdate to match with the mockups
 let noTime = `${person.dob.date}`
 let reverseDate = `${noTime.charAt(5)}${noTime.charAt(6)}/${noTime.charAt(8)}${noTime.charAt(9)}/${noTime.charAt(2)}${noTime.charAt(3)}`
+// these three variables make the phone number appear as in the mockups
 let cell = `${person.cell}`.split("").splice(0,5).join("")
 let cellTwo = `${person.cell}`.split("").splice(6,10).join("")
 let cellThree = `${cell} ${cellTwo}`
-
+// variable that serves as a template for what a modal should have inside of it, using template literals to use info gained from the api
 let modal =
 `<div class="modal-container">
       <div class="modal">
@@ -71,10 +79,11 @@ let modal =
           <button type="button" id="modal-next" class="modal-next btn">Next</button>
       </div>
   </div>`
+  // gotta make a new div, then append it to the body then make it's innerHTML become the modal template.
   let mody = document.createElement('div')
   document.body.appendChild(mody)
   mody.innerHTML = modal
-
+// click listeners for the next, prev and close btns.  Stops user from continuing if index is at either end of the index.
   document.getElementById('modal-next').addEventListener('click', (e) => {
     if (index === 11) { return }
     let indexAdd = parseInt(index) + 1;
@@ -87,6 +96,7 @@ let modal =
     e.target.closest('.modal-container').remove()
     modalMaker(indexAdd, peopleArr)
   })
+  // closes the current modal and removes the background blur.
   document.getElementById('modal-close-btn').addEventListener('click', (e) => {
     e.target.closest('.modal-container').remove()
     document.querySelector('.gallery').classList.remove('blur')
@@ -95,6 +105,8 @@ let modal =
 }
 
 // Search bar
+// takes values from the search input, makes them all lower case to easier match
+// feeds the values into the search function
 let searchBar = document.querySelector('.search-container')
 searchBar.innerHTML =
 `<form action="#" method="get">
@@ -104,13 +116,13 @@ searchBar.innerHTML =
 document.getElementById('search-submit').addEventListener('click', (e) => {
   let searchLetters = document.querySelector('.search-input')
   let searchy = searchLetters.value.toLowerCase()
-
-
   searcher(searchy)
 }, false)
 
 
-
+// uses RegExp to search the values provided, and does so globally so it doesn't just return the first one found.
+// forEach goes through each name on the cards profiles, and compares it to the RegExp of the values provides from the search input
+// leaves the display as is for matching, and none for non-matching.
   function searcher (letts) {
     let regEx = new RegExp(letts, 'gi')
     let named = Array.from(document.querySelectorAll('.card-name'))
