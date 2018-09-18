@@ -22,7 +22,7 @@ fetch('https://randomuser.me/api?results=12&nat=US')
 function profileMaker (infos) {
   // Grab the gallery to change it's innerHTML
   let gallery = document.getElementById('gallery')
-  // create a variable to later put each profile into
+  // create a variable to later put each profile into, stores each forEach(person,index) that's made, proper syntax allows it to display each card individually when put into gallery.innerHTML
   let cardContent = ''
   // goes through each person object and displays the requested info on the cards, and gives each card an id number
   infos.forEach((person, index) => {
@@ -77,7 +77,7 @@ function modalMaker (index, peopleArr) {
           <button type="button" id="modal-next" class="modal-next btn">Next</button>
       </div>
   </div>`
-  
+
   // gotta make a new div, then append it to the body then make it's innerHTML become the modal template.
   let mody = document.createElement('div')
   document.body.appendChild(mody)
