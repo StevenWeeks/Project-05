@@ -9,7 +9,8 @@ fetch('https://randomuser.me/api?results=12&nat=US')
 // the response is then turned into json so it can be easier to work with
   .then(response => response.json())
   // the json data is now used to make the profile cards
-  .then(data => { profileMaker(data.results)
+  .then(data => {
+    profileMaker(data.results)
     // this adds a click listener to the document
     document.addEventListener('click', (e) => {
       // this then limits the clicks to children of the card div closest() targets the closest parent/ancestor
@@ -21,7 +22,6 @@ fetch('https://randomuser.me/api?results=12&nat=US')
       }
     }, false)
   })
-
 
 // Create the profile
 function profileMaker (infos) {
@@ -40,7 +40,7 @@ function profileMaker (infos) {
   gallery.innerHTML = cardContent
 
 }
-function modalMaker(index, peopleArr) {
+function modalMaker( index, peopleArr) {
 document.querySelector('.gallery').classList.add('blur')
 document.querySelector('header').classList.add('blur')
 let person = peopleArr[index]
